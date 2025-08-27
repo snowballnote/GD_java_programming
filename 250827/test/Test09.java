@@ -1,7 +1,6 @@
 package test;
 
 import java.util.Scanner;
-
 /*
   사용자로부터 한 개의 값을 입력 받아 1부터 입력숫자까지의 합을 출력하세요.
   단, 입력한 수는 1보다 크거나 같아야 합니다.
