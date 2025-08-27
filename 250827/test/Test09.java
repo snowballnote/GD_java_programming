@@ -1,34 +1,26 @@
 package test;
-
-import java.util.Scanner;
 /*
-  사용자로부터 한 개의 값을 입력 받아 1부터 입력숫자까지의 합을 출력하세요.
-  단, 입력한 수는 1보다 크거나 같아야 합니다.
-  만일 1 미만의 숫자가 입력됐다면 “잘못 입력하셨습니다.“를 출력하세요.
-  [결과]
-  정수를 입력하세요 : 5
-  1 + 2 + 3 + 4 + 5 = 15
-*/
-public class Test09 {
+ * 가로 구구단 출력하기
+   =2단=  	=3단=		=9단= 
+ * 2*2=4    3*2=6  ...  9*2=18
+ * 2*3=6
+ * ...
+ * 2*9=18   3*9=27      9*9=81 
+ * 
+ * println, print 잘 확인하기
+ */
+public class Test12 {
 	public static void main(String[] args) {
-		System.out.print("한개의 숫자 입력: ");
-		Scanner sc = new Scanner(System.in);
-		int num = sc.nextInt();
-		
-		int i;
-		int sum = 0;
-		if(num < 1) {
-			System.out.println("잘못 입력하셨습니다.");
-		} else {
-			for(i = 1; i <= num; i++) {
-				if(i == num) {
-					System.out.print(i + " ");
-				} else {
-					System.out.print(i + " + ");
-				}
-				sum += i;
-			}
-			System.out.print("= " + sum);
+		int num;
+		for(num = 2; num <=9; num++) {
+			System.out.print("=" + num + "단=\t");
 		}
-	}
+		System.out.println();
+		for(int i = 2; i <= 9; i++) {
+			for(int j = 2; j <= 9; j++) {
+				System.out.print(j + "x" + i + "=" + (i*j) + "\t");
+			}
+			System.out.println();
+		}		
+	}	
 }
