@@ -21,9 +21,12 @@ public class Test09 {
 			System.out.println("잘못 입력하셨습니다.");
 		} else {
 			for(i = 1; i <= num; i++) {
-				System.out.print(i + " ");
+				if(i == num) {
+					System.out.print(i + " ");
+				} else {
+					System.out.print(i + " + ");
+				}
 				sum += i;
-				System.out.print("+ ");
 			}
 			System.out.print("= " + sum);
 		}
