@@ -24,5 +24,10 @@ public class Test05 {
 			System.out.print(num + " ");
 			num += diff;
 		}
+		/*
+		 * for (int i=1;i<=10;i++,startnum+=inter) { //이것도 가능.
+			System.out.print(startnum + "  ");
+		 }
+		 */
 	}
 }
