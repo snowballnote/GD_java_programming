@@ -14,17 +14,13 @@ public class Test12 {
 		int num;
 		for(num = 2; num <=9; num++) {
 			System.out.print("=" + num + "단=\t");
-			if(num == 9) System.out.println();
 		}
-		int i, j;
-		for(i = 2; i <= 9; i++) {
-			System.out.print("=" + i + "단=\t");
-			if(i == 9) System.out.println();
-			for(j = 2; j <= 9; j++) {
+		System.out.println();
+		for(int i = 2; i <= 9; i++) {
+			for(int j = 2; j <= 9; j++) {
 				System.out.print(j + "x" + i + "=" + (i*j) + "\t");
-			}System.out.println();
-		}
-
-		
+			}
+			System.out.println();
+		}		
 	}	
 }
