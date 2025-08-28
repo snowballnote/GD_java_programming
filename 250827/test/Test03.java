@@ -12,16 +12,15 @@ import java.util.Scanner;
  ***
 *****
 --------------------------
-		i			j
+	  i높이			j
 --------------------------
-	  3			1,2|3|4,5
-	2 3 4		1|2 3 4|5
-  1 2 3 4 5		1 2 3 4 5
-  
+	  1			1,2|3|4,5 => m-i, m+i
+	  2			1|2 3 4|5 => m-1, m+1
+  	  3			1 2 3 4 5 => m-2, m+2  
 총 h줄 출력해야 함.
 각 줄 i (1 ~ h):
 왼쪽 공백: h - i 개
-별: 2 * i - 1 개
+별: 2 * i - 1 개 => 바닦갯수
 */
 public class Test03 {
 	public static void main(String[] args) {
@@ -43,3 +42,25 @@ public class Test03 {
 		
 	}
 }
+/*
+ * public class Test03_A {
+	public static void main(String[] args) {
+		System.out.println("삼각형의 높이");
+		Scanner scan = new Scanner(System.in);
+		int h = scan.nextInt();		
+		int b = h*2-1; //바닥의 * 갯수
+		int m = b/2;   //* 중간 인덱스. 
+		for(int i=0;i<h;i++) {
+		   for(int j=0;j<b;j++) {
+			   if(j >= m-i && j<= m+i) 
+				   System.out.print("*");
+			   else
+				   System.out.print(" ");
+		   }
+		   System.out.println();
+		}
+		
+	}
+}
+*/
+ */
