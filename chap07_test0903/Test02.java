@@ -38,33 +38,22 @@ flip 후 앞면 동전의 갯수 :4
 flip 후 뒷면 동전의 갯수 :6
  */
 class Coin{
-	int side;
-	int serialNo;
-	int sno;
-	public Coin(int i) {
-		// TODO Auto-generated constructor stub
+	int side; //앞면(0), 뒷면(1)
+	int serialNo; //동전번호
+	static int sno; //동전 번호 생성을 위한 클래스 변수
+	//생성자
+	public Coin(int side) {
+		this.side= side;
+		this.serialNo = ++sno; //동전 생성 시마다 번호 증가
 	}
+	//앞/뒷면 랜덤으로 바꾸기
 	void flip() {
 		side = (int)(Math.random() * 2); //0또는1 중 임의의 수
-		for(int i = 0; i < arr.length; i++) {
-			
-		}
-		if(side == 0) {
-			System.out.print("앞면");
-		}else {
-			System.out.print("뒷면");
-		}
 	}
 	
-	void sno() {
-		System.out.println);
+	public String toString() {
+		return serialNo + "번 동전:" + (side == 0?"앞면":"뒷면");
 	}
-
-	/*
-	public Coin(int i) {
-		System.out.print(serialNo + "번 동전 : " + side);
-	}
-	*/
 }
 public class Test02 {
 	public static void main(String[] args) {
