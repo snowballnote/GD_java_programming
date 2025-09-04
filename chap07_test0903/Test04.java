@@ -15,9 +15,7 @@ package chap07_test0903;
  *         ... */
 class Circle{
 	int r, x, y, no;
-	int count = 0;
-	double area;
-	double length;
+	static int count = 0; //모든 Circle 객체가 공유
 	
 	Circle(int r, int x, int y){
 		this.r = r;
@@ -29,24 +27,28 @@ class Circle{
 		this(1, x, y);
 	}
 	Circle(int r){
-		this(1, 0, 0);
+		this(r, 0, 0);
 	}
-	
+	//넓이
 	double area() {
 		return Math.PI * r * r;
 	}
+	//둘레
 	double length() {
 		return 2 * Math.PI * r;
 	}
+	//이동
 	void move(int a, int b) {
-		a += x;
-		b += y;
+		x += a;
+		y += b;
 	}
+	//확대/축소
 	void scale(double m) {
-		r += m;
+		r = (int)(r * m);
 	}
+	//객체 정보 출력
 	public String toString() {
-		return this.no + "번원 : 반지름:" + this.r + ", 좌표:(" + this.x + "," + this.y + "), 넓이:" + this.area + ", 둘레:" + this.length;
+		return no + "번원 : 반지름:" + r + ", 좌표:(" + x + "," + y + "), 넓이:" + area() + ", 둘레:" + length();
 	}
 }
 public class Test04 {
