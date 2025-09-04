@@ -24,6 +24,7 @@ package chap07_test0903;
 비정규직:이름=이비정, 주소=서울시 구로구,부서=영업부,계약만료일=Sun Sep 01 15:58:50 KST 2024,기본입금=1000
 이비정의 급여 : 1000
 */
+/*
 import java.util.Date;
 class Employee{
 	String type; //직원 구분
@@ -84,6 +85,63 @@ class InformalEmployee extends Employee{
 		return super.toString() + ",계약만료일=" + expireDate + ",기본임금=" + primaryPay;
 	}
 }
+*/
+import java.util.Date;
+
+class Employee{
+	String type, name, address, dept;
+
+	public Employee(String type, String name, String address, String dept) {
+		//super(); //있어도되고 없어도댐.
+		this.type = type;
+		this.name = name;
+		this.address = address;
+		this.dept = dept;
+	}
+	@Override
+	public String toString() {
+		return type + ": 이름=" + name + ", 주소=" + address + ", 부서=" + dept;
+	}
+	
+}
+class FormalEmployee extends Employee{
+	String empNo;
+	String position;
+	int salary;
+	public FormalEmployee(String name, String address, String dept, String empNo, int salary,
+			String position) {
+		super("정규직", name, address, dept);
+		this.empNo = empNo;
+		this.position = position;
+		this.salary = salary;
+	}
+	int getPay() {
+		return salary / 12;
+	}
+	@Override
+	public String toString() {
+		return super.toString() + 
+				", 직원번호=" + empNo + ", 직급=" + position + ", 연봉=" + salary;
+	}
+}
+
+class InformalEmployee extends Employee{
+	Date expireDate;
+	int primaryPay;
+	InformalEmployee(String name, String adress, String dept, Date expireDate, int primaryPay){
+		super("비정규직", name, adress, dept);
+		this.expireDate = expireDate;
+		this.primaryPay = primaryPay;
+	}
+	int getPay() {
+		return primaryPay;
+	}
+	@Override
+	public String toString() {
+		return super.toString() + ", 계약만료일=" + expireDate + ", 기본임금=" + primaryPay;
+	}
+	
+}
 public class Test05 { //상속문제
 	public static void main(String[] args) {
 		//정규직원 객체 생성
@@ -93,9 +151,11 @@ public class Test05 { //상속문제
 		  System.out.println(fe.name + "의 급여 : " +   fe.getPay());
 
 		  Date expireDate = new Date(); //현재날짜 시간.
+		  //expireDate.getTime(): 1970년 시작부터 현재까지 시간을 밀리초로 리턴
+		  //expireDate.setTime(long): 시간설정. 2년 이후의 일자로 설정
 		  expireDate.setTime(expireDate.getTime() +
 				   (1000L * 60 * 60 * 24 * 365 * 2));
-		  chap07_test0903.InformalEmployee ie = new InformalEmployee
+		  InformalEmployee ie = new InformalEmployee
 				  ("이비정", "서울시 구로구", "영업부", expireDate, 1000);
 		  System.out.println(ie);
 		  System.out.println(ie.name + "의 급여 : " +  ie.getPay());
