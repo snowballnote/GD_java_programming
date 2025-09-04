@@ -24,9 +24,66 @@ package chap07_test0903;
 비정규직:이름=이비정, 주소=서울시 구로구,부서=영업부,계약만료일=Sun Sep 01 15:58:50 KST 2024,기본입금=1000
 이비정의 급여 : 1000
 */
-
 import java.util.Date;
-
+class Employee{
+	String type; //직원 구분
+	String name; //이름
+	String address; //주소
+	String dept; //부서
+	
+	public Employee(String type, String name, String address, String dept) {
+		this.type = type;
+		this.name = name;
+		this.address = address;
+		this.dept = dept;
+	}
+	//급여를 계산하는 메서드(추상적인 개념 -> 자식에서 재정의)
+	public int getPay() {
+		return 0;
+	}
+	public String toString() {
+		return type + ":이름=" + name + ", 주소=" + address + ",부서=" + dept;
+	}
+}
+class FormalEmployee extends Employee{
+	String empNo;
+	String position;
+	int salary;
+	
+	public FormalEmployee(String name, String address, String dept, 
+							String empNo, int salary, String position){
+		super("비정규직", name, address, dept);
+		this.empNo = empNo;
+		this.salary = salary;
+		this.position = position;
+	}
+	@Override
+	public int getPay() {
+		return salary / 12;
+	}
+	@Override
+	public String toString() {
+		return super.toString() + ",직원번호=" + empNo + ",직급=" + position + ",연봉=" + salary;
+	}
+}
+class InformalEmployee extends Employee{
+	Date expireDate; //계약만료일
+	int primaryPay; //기본임금
+	
+	public InformalEmployee(String name, String address, String dept, Date expireDate, int primaryPay) {
+		super("비정규직", name, address, dept);
+		this.expireDate = expireDate;
+		this.primaryPay = primaryPay;
+	}
+	@Override
+	public int getPay() {
+		return primaryPay;
+	}
+	@Override
+	public String toString() {
+		return super.toString() + ",계약만료일=" + expireDate + ",기본임금=" + primaryPay;
+	}
+}
 public class Test05 { //상속문제
 	public static void main(String[] args) {
 		//정규직원 객체 생성
@@ -38,7 +95,7 @@ public class Test05 { //상속문제
 		  Date expireDate = new Date(); //현재날짜 시간.
 		  expireDate.setTime(expireDate.getTime() +
 				   (1000L * 60 * 60 * 24 * 365 * 2));
-		  InformalEmployee ie = new InformalEmployee
+		  chap07_test0903.InformalEmployee ie = new InformalEmployee
 				  ("이비정", "서울시 구로구", "영업부", expireDate, 1000);
 		  System.out.println(ie);
 		  System.out.println(ie.name + "의 급여 : " +  ie.getPay());
