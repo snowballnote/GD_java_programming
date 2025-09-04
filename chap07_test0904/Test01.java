@@ -128,34 +128,10 @@ class Buyer{
 	}
 	
 	void summary() {
-		int totAmt = 0, totPoint = 0;
-		int frTotal = 0,dTotal = 0, sTotal = 0;
-		for(int i = 0; i < cnt; i++) {
-			totAmt += cart[i].price;
-			totPoint += cart[i].point;
-			
-			Food f = null;
-			if(f instanceof Fruit) {
-				Fruit fr = (Fruit)f;
-				ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ
-			}else if(f instanceof Drink) {
-				Drink d = (Drink)f;
-				
-			}else if(f instanceof Snack){
-				Snack s = (Snack)f;
-				
-			}
-		}
-		System.out.println("총 구매금액 : " + totAmt);
-		System.out.print("총 구매목록: ");
-		for(int i = 0; i < cnt; i++) {
-			System.out.print(cart[i] + ((i != cnt)?",":" "));
-		}
-		System.out.println();
-		System.out.println("과일 구매금액 : " + frTotal +  ",과일 구매목록: " );
-		System.out.println("음료 구매금액 : " + dTotal +  ",음료 구매목록: " );
-		System.out.println("과자 구매금액 : " + sTotal +  ",과자 구매목록: " );
-		
+		//과일갯수, 구매금액, 구매목록
+		int frAmt = 0, dAmt = 0, sAmt = 0; //fr과일, d음료, s과자
+		String frList = "", dList = "", sList ="";
+		for (int i = )
 	}
 }
 /*
