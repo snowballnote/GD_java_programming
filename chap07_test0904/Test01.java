@@ -17,9 +17,9 @@ package chap07_test0904;
 class Food{
 	int price, point;
 
-	public Food(int price) {
+	Food(int price) {
 		this.price = price;
-		point = price / 10;
+		this.point = price / 10;
 	}
 }
 
@@ -100,40 +100,6 @@ class Cookie extends Snack{
 		return "쿠키";
 	}	
 }
-/*===========================================*/
-class Buyer{
-	int money = 10000, point, cnt;
-	Food[] cart = new Food[10];
-	
-	void buy(Food f) {
-		if (money < f.price) {
-			System.out.println(f + "구매시 잔액부족");	
-			return;
-		}else {
-			money -= f.price;
-			point += f.point;
-			cart[cnt++] = f;
-			System.out.println(f + "를(을) " + f.price + "가격에 구입");
-			if(f instanceof Fruit) {
-				Fruit fr = (Fruit)f;
-				System.out.println(fr.brix + "당도 상품 구매");
-			}else if(f instanceof Drink) {
-				Drink d = (Drink)f;
-				System.out.println(d.ml + "ml 상품 구매");
-			}else if(f instanceof Snack){
-				Snack s = (Snack)f;
-				System.out.println(s.gram + "g 상품 구매");
-			}
-		}
-	}
-	
-	void summary() {
-		//과일갯수, 구매금액, 구매목록
-		int frAmt = 0, dAmt = 0, sAmt = 0; //fr과일, d음료, s과자
-		String frList = "", dList = "", sList ="";
-		for (int i = )
-	}
-}
 /*
 * 2. Buyer 클래스
 *   멤버변수 : 돈(money)=10000, 포인트(point), 구매건수(cnt)
@@ -151,6 +117,82 @@ class Buyer{
 *       음료의 갯수,음료 구매 금액,음료 구매 목록  
 *       과자의 갯수,과자 구매 금액,과자 구매 목록 출력하기  
 */
+class Buyer{
+	int money = 10000, point = 0, cnt = 0;
+	Food[] cart = new Food[10];
+	
+	void buy(Food f) { //Food f: 모든 식품류를 다 받는다.
+		if (money < f.price) {
+			System.out.println(f + "구매시 잔액부족");	
+			return;
+		}
+		money -= f.price;
+		point += f.point;
+		cart[cnt++] = f;
+		System.out.println(f.toString() + "를(을) " + f.price + "가격에 구입");
+		if(f instanceof Fruit) { //형변환
+			Fruit fr = (Fruit)f; //형변환 연산자
+			System.out.println(fr.brix + "당도 상품 구매");
+		}else if(f instanceof Drink) {
+			Drink d = (Drink)f; 
+			System.out.println(d.ml + "ml 상품 구매");
+		}else if(f instanceof Snack){
+			Snack s = (Snack)f;
+			System.out.println(s.gram + "g 상품 구매");
+	
+		}
+	}
+	
+	void summary() {
+		//구매금액, 구매목록
+		int totAmt = 0, frAmt = 0, dAmt = 0, sAmt = 0; //fr과일, d음료, s과자 //금액
+		int frCnt = 0, dCnt = 0, sCnt = 0; //갯수
+		String itemList = "", frList = "", dList = "", sList =""; //목록
+		/*
+		for (int i = 0; i < cnt; i++) {
+			Food f = cart[i];
+			totAmt += f.price;
+			itemList += f.toString() + ",";
+			
+			if (f instanceof Fruit) {
+				frAmt += f.price;
+				frList += f.toString() + ",";
+            } else if (f instanceof Drink) {
+            	dAmt += f.price;
+            	dList += f.toString() + ",";
+            } else if (f instanceof Snack) {
+            	sAmt += f.price;
+            	sList += f.toString() + ",";
+            }
+		}
+		*/
+		for(int i = 0; i < cnt; i++) {
+			totAmt += cart[i].price; //가격 합
+			itemList += cart[i].toString() + ","; //구매한 식료품 목록
+			if(cart[i] instanceof Fruit) {
+				frAmt += cart[i].price; //과일 상품 가격의 합
+				frList += cart[i] + ","; //과일 목록
+				frCnt++; //과일 갯수
+			}
+			if(cart[i] instanceof Drink) {
+				dAmt += cart[i].price;
+				dList += cart[i] + ",";
+				dCnt++;
+			}
+			if(cart[i] instanceof Snack) {
+				sAmt += cart[i].price;
+				sList += cart[i] + ",";
+				sCnt++;
+			}
+		}
+		System.out.println("총 구매금액 : " + totAmt);
+        System.out.println("총 구매목록 : " + itemList);
+        System.out.println("과일 구매건수:" + frCnt + ", 과일 구매금액 : " + frAmt + ", 과일 구매목록 : " + frList);
+        System.out.println("음료 구매건수:" + dCnt + ", 음료 구매금액 : " + dAmt + ", 음료 구매목록 : " + dList);
+        System.out.println("과자 구매건수:" + sCnt + ", 과자 구매금액 : " + sAmt + ", 과자 구매목록 : " + sList);
+		
+	}
+}
 /*
 [결과]
 사과를(을) 1000가격에 구입
