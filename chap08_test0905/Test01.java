@@ -4,7 +4,7 @@ package chap08_test0905;
 * 1. 직원 (Employee) : 직원구분, 이름, 주소, 소속부서
 *               모든 직원은 급여를 받아야 하므로 getPay() 메서드를 멤버 메서드로 가진다. 
 *               단 직원 구분을 모르므로 getPay() 메서드를 구현할 수 없으므로 
-*               추상 메서드로 구현한다.  
+*               추상 메서드로 구현한다.
 * 2. 정규직원(FormalEmployee) : 직원번호,직급, 연봉을 가진다.
 *             급여는 연봉 /12
 * 3. 비정규직원(InformalEmployee) : 계약 만료일(Date),기본임금을 가진다.
@@ -31,9 +31,11 @@ abstract class Employee{
 		this.name = name;
 		this.addr = addr;
 		this.dep = dep;
-	}
+	}//생성자
 
-	abstract int getPay(); 
+	abstract long getPay(); //abstract public long getPay(); 부모가 public이면 자손도 public으로 변경해줘야 오류안남.
+	//부모와 자식의 선언이 같아야함. 그러나 부모의 접근제한자(public...)가 자식의 접근제한자보다 넓은 의미이면 이건 가능.
+	//추상 메소드는 자손에 무조건 Override해줘야함.
 }
 class FormalEmployee extends Employee{
 	String empNo; //직원 번호
@@ -46,7 +48,8 @@ class FormalEmployee extends Employee{
 		this.position = position;
 		this.saraly = saraly;
 	}
-	int getPay() {
+	@Override
+	long getPay() {
 		return saraly / 12;
 	}
 }
@@ -59,7 +62,8 @@ class InformalEmployee extends Employee{
 		this.exDate = exDate;
 		this.primaryPay = primaryPay;
 	}
-	int getPay() {
+	@Override
+	long getPay() {
 		return primaryPay;
 	}
 }
@@ -72,7 +76,8 @@ class TempEmployee extends Employee{
 		this.timePay = timePay;
 		this.empTime = empTime;
 	}
-	int getPay() {
+	@Override
+	long getPay() {
 		return timePay * empTime;
 	}
 }
