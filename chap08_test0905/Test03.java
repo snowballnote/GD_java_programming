@@ -7,49 +7,50 @@ DanceRobot은 춤을 춤니다.
 SingRobot은 노래를 부릅니다.
 DrawRobot은 그림을 그립니다.
  */
-abstract class Robot{
-	String type;
-	Robot(String type){
-		this.type = type;
-	}
+interface Robot {
+	void action();
 }
-interface Action{
-	public void action();
-}
-class DanceRobot extends Robot implements Action{
-
-	DanceRobot() {
-		super("DanceRobot");
-	}
+class DanceRobot implements Robot {
 	@Override
 	public void action() {
-		System.out.println(type + "은 춤을 춥니다.");
+		System.out.println("DanceRobot은 춤을 춤니다.");
 	}
-	
 }
-class SingRobot extends Robot implements Action{
-
-	SingRobot() {
-		super("SingRobot");
-	}
+class SingRobot implements Robot {
 	@Override
 	public void action() {
-		System.out.println(type + "은 노래를 부릅니다.");
+		System.out.println("SingRobot은 노래를 부릅니다.");
 	}
-	
 }
-class DrawRobot extends Robot implements Action{
-
-	DrawRobot() {
-		super("DrawRobot");
-	}
+class DrawRobot implements Robot {
 	@Override
 	public void action() {
-		System.out.println(type + "은 그림을 그립니다.");
+		System.out.println("DrawRobot은 그림을 그립니다.");
 	}
-	
 }
-
+/*
+abstract class Robot {
+	abstract void action();
+}
+class DanceRobot extends Robot {
+	@Override
+	public void action() {
+		System.out.println("DanceRobot은 춤을 춤니다.");
+	}
+}
+class SingRobot extends Robot {
+	@Override
+	public void action() {
+		System.out.println("SingRobot은 노래를 부릅니다.");
+	}
+}
+class DrawRobot extends Robot {
+	@Override
+	public void action() {
+		System.out.println("DrawRobot은 그림을 그립니다.");
+	}
+}
+*/
 public class Test03 {
 	public static void main(String[] args) {
 		Robot[] robot = new Robot[3];
@@ -57,7 +58,7 @@ public class Test03 {
 		robot[1] = new SingRobot();
 		robot[2] = new DrawRobot();
 		for(Robot r : robot) {
-			((Action) r).action(); 
+			r.action(); 
 		}
 	}
 }
