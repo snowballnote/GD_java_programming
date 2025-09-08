@@ -36,12 +36,14 @@ abstract class Animal{
 	abstract void sound();
 }
 class Dog extends Animal{
-	Dog() {
-		super("강아지", 4);
+	Dog() { //부모에 슈퍼생성자가 있어서 슈퍼생성자를 써야함. 기본 생성 x
+		super("강아지", 4); //수퍼생성자 : 부모클래스의 메서드를 가져오는 것.
 	}
+	@Override
 	void eat() {
 		System.out.println("주인이 주는대로 먹는다.");
 	}
+	@Override
 	void sound() {
 		System.out.println("멍멍짓는다");
 	}	
@@ -50,16 +52,18 @@ class Lion extends Animal{
 	Lion() {
 		super("사자", 4);
 	}
+	@Override
 	void eat() {
 		System.out.println("초식동물을 잡아 먹는다.");
 	}
+	@Override
 	void sound() {
 		System.out.println("어흥거린다.");
 	}
 }
 public class Test02 {
 	public static void main(String[] args) {
-		Animal[] animal = new Animal[2];
+		Animal[] animal = new Animal[2]; //추상클래스 애니멀을 이용해 사운드와 잇을 호출.
 		animal[0] = new Dog();
 		animal[1] = new Lion();
 		for (Animal a : animal) {
