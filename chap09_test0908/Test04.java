@@ -1,5 +1,4 @@
 package chap09_test0908;
-
 /*
  * Outer1클래스의 내부 클래스 Inner1, Inner2 의 멤버변수 iv의 값 출력 하기
  */
@@ -23,7 +22,9 @@ class Outer1 {
 public class Test04 {
 	public static void main(String[] args) {
 		Outer1 out = new Outer1();
-		out.method();
-		out.method2();
+		Outer1.Inner1 inner1 = out.new Inner1();
+		Outer1.Inner2 inner2 = new Outer1.Inner2();
+		System.out.println(inner1.iv);
+		System.out.println(inner2.iv);
 	}
 }
