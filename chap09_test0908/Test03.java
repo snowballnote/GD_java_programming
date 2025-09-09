@@ -14,9 +14,10 @@ interface LambdaInterface2 {
 	boolean method(int a);
 }
 public class Test03 {
+	/*
 	static void numSum(LambdaInterface2 f, int[] arr) {
 		int sum = 0;
-		String rslt = "";
+		String rslt = ""; //임의의정수 10개를 출력할 변수
 		for(int n : arr) {
 			if(f.method(n)) {
 				rslt += n + ",";
@@ -25,9 +26,16 @@ public class Test03 {
 		}
 		System.out.println(rslt + "=" + sum);
 	}
+	*/
+	private static void numSum(LambdaInterface2 f, int[] arr) {
+		int sum = 0;
+		for(int a : arr) {
+			if(f.method(a)) sum += a;
+		}
+		System.out.println(sum);
+	}
 	public static void main(String[] args) {
-		int[] arr = new int[10];
-		int even, odd;
+		int[] arr = new int[10]; //arr: 1~100사이의 임의의 수를 가진 정수 10개 저장
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = (int) (Math.random() * 100) + 1;
 			System.out.print(arr[i] + ",");
@@ -35,7 +43,7 @@ public class Test03 {
 		
 		System.out.println();
 		System.out.print("홀수:");
-		numSum(a -> a % 2 != 0, arr);
+		numSum(a -> a % 2 != 0, arr); //람다인터페이스2 타입.
 		System.out.print("짝수:");
 		numSum(a -> a % 2 == 0, arr);
 	}
