@@ -16,13 +16,9 @@ class Outer2 {
 		int value = 20;
 		void method1() {
 			int value = 30;
-			
-			LambdaInterface f = ()->{
-				System.out.println(value + " => 지역변수 value");
-				System.out.println(this.value + " => 내부클래스 변수 value");
-				System.out.println(Outer2.this.value + " => 외부클래스 변수 value");
-			};
-			f.method();
+			System.out.println(value + " => 지역변수 value");
+			System.out.println(this.value + " => 내부클래스 변수 value");
+			System.out.println(Outer2.this.value + " => 외부클래스 변수 value");
 		}
 	}
 }
