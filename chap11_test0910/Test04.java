@@ -33,5 +33,14 @@ public class Test04 {
         for(int i = 0; i < arr1.length; i++) {
             System.out.println(arr1[i] + "=>" + arr2[i]);
         }
+        System.out.println("=================");
+        
+        //split과 trim따로 사용하지 않고 한번에 사용하는 법
+        //\\s*,\\s*: 정규식 표현. \s: 공백한개 \s*: 공백 0개 이상
+        //			, 앞뒤에 공백까지를 분리문자로 설정
+        arr2 = s2.split("\\s*, \\s*");
+        for(int i = 0; i < arr1.length; i++) {
+        	System.out.printf("%s=>%s\n", arr1[i], arr2[i]);
+        }//그러나 마지막 향단이 부분이 ,를 기준으로 트림했는데 향다닝는 없어서 공백이 안없어짐.
     }
 }
