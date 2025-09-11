@@ -16,7 +16,6 @@ public class Test05 {
     public static void main(String[] args) {
         String str = "1,234"; // 입력 문자열
 
-        try {
             // 쉼표 제거 후 정수로 변환
             int value = Integer.parseInt(str.replace(",", ""));
             
@@ -25,13 +24,7 @@ public class Test05 {
 
             // printf와 %,d 이용하여 세 자리마다 콤마 출력
             System.out.printf("%,d\n", value);
-
-        } catch (NumberFormatException e) {
-            try {
-                throw new NumberInputException("숫자 형식이 올바르지 않습니다.");
-            } catch (NumberInputException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
+            //println과 String.format다른방법
+            System.out.println(String.format("%,d", value));
     }
 }
