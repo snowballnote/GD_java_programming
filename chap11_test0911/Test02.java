@@ -22,6 +22,7 @@ public class Test02 {
 		System.out.println("년도와 월을 입력하세요");
 		int year = sc.nextInt();
 		int month = sc.nextInt();
+		
 		System.out.println("\t" + year + "년" + month + "월");
 		String[] week = {"일","월", "화", "수", "목", "금", "토"};
 		for(int i = 0; i < week.length; i++) {
@@ -31,13 +32,22 @@ public class Test02 {
 		
 		//날짜구현
 		Calendar cal = Calendar.getInstance();
-		//cal.set(year, (month - 1), 1);
+		cal.set(year, (month - 1), 1); //해당 년, 월의 1일로 설정
+
+		int startday = cal.get(Calendar.DAY_OF_WEEK); //1일의 요일(일=1, 월=2,...)
 		int lastday = cal.getActualMaximum(Calendar.DATE);
-		cal.set(year,  (month - 1), lastday);
-		for(int i = 1; i <= cal.get(Calendar.DATE); i++) {
-			System.out.printf("%d", i);
+
+		//1일의 요일 전까지 공백 출력
+		for(int i = 1; i < startDay; i++) {
+			System.out.printf("%5s", "");
 		}
-		
-		
+
+		//날짜 출력
+		for(int day = 1; day <= lastday; day++){
+			System.out.printf("%d5", day);
+			if((day + startDay - 1) % 7 == 0){ //토요일마다 줄바꿈
+				System.out.println();
+			}
+		}	
 	}
 }
