@@ -24,6 +24,7 @@ class Student {
 
         Student s = (Student) o; // 다운캐스팅
         return studno == s.studno && name.equals(s.name); // 학번과 이름이 모두 같을 때만 true
+        //studno는 int여서 ==로 name은 String이여서 equlas로
     }
 
     /*
