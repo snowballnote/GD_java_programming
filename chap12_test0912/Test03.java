@@ -42,6 +42,7 @@ import java.util.List;
 김삿갓:국어(95),영어(85),수학(75),총점(255),평균(85.00)
 홍길동:국어(90),영어(80),수학(70),총점(240),평균(80.00)
  */
+/*******************************
 class Student implements Comparable<Student>{
 	String name;
 	int kor, eng, math;
@@ -95,5 +96,83 @@ public class Test03 {
 		System.out.println("수학 점수내림차순 정렬");
 		Collections.sort(list);
 		for(Student s : list) System.out.println(s);
+	}
+}
+******************************************/
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+class Student implements Comparable<Student> {
+	String name;
+	int kor, eng, math;
+
+	public Student(String name, int kor, int eng, int math) {
+		this.name = name;
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+	}
+	int getTotal() {
+		return kor + eng + math;
+	}
+	public String toString() { //출력
+		return String.format
+       ("%s:국어(%d),영어(%d),수학(%d),총점(%d),평균(%.2f)",
+    		   name, kor, eng, math, getTotal(),
+				getTotal() / 3.0);
+	}
+	@Override
+	public int compareTo(Student o) { //이름순 정렬
+		return name.compareTo(o.name);
+	}
+}
+
+public class Test03 {
+	public static void main(String[] args) {
+		List<Student> list = new ArrayList<Student>();
+		list.add(new Student("홍길동", 90, 80, 70));
+		list.add(new Student("김삿갓", 95, 85, 75));
+		list.add(new Student("이몽룡", 80, 95, 95));
+		list.add(new Student("임꺽정", 60, 75, 100));
+
+		System.out.println("기본정렬방식");
+		Collections.sort(list); // Student 클래스의 compareTo() 메서드에 구현된 내용대로 정렬됨
+		for(Student s : list) System.out.println(s);
+		System.out.println();
+		
+		System.out.println("총점기준 내림차순 정렬");
+//		Collections.sort(list,(s1,s2)->s2.getTotal() - s1.getTotal());
+		Collections.sort(list,  new Comparator<Student>() {
+			@Override
+			public int compare(Student s1, Student s2) {
+				return s2.getTotal() - s1.getTotal();
+			}
+		});
+		for(Student s : list) System.out.println(s);
+		System.out.println();
+
+		System.out.println("국어 점수내림차순 정렬");
+//		Collections.sort(list,(s1,s2)->s2.kor - s1.kor);
+		Collections.sort(list,
+		    new Comparator<Student>() {
+		 		@Override
+		 		public int compare(Student s1, Student s2) {
+					return s2.kor - s1.kor;
+				}
+		});		
+		for(Student s : list) System.out.println(s);
+		System.out.println();
+
+		System.out.println("영어 점수내림차순 정렬");
+		Collections.sort(list,(s1,s2)->s2.eng - s1.eng);
+		for(Student s : list) System.out.println(s);
+		System.out.println();
+
+		System.out.println("수학 점수내림차순 정렬");
+		Collections.sort(list,(s1,s2)->s2.math - s1.math);
+		for(Student s : list) System.out.println(s);
+		System.out.println();
 	}
 }
