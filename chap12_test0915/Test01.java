@@ -2,7 +2,10 @@ package chap12_test0915;
 
 import java.util.Random;
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 /*
 다음 결과가 나오도록 프로그램을 작성하시오
@@ -33,29 +36,60 @@ import java.util.LinkedHashSet;
  */
 public class Test01 {
 	public static void main(String[] args) {
-		Set<Integer> lotto = new LinkedHashSet<>();
-		boolean third = false;
-		boolean second = false;
-		boolean first = false;
 		Random rand = new Random();
+		//전체 뽑힌 번호를 저장할 Set(중복 방지)
+		Set<Integer> lotto = new LinkedHashSet<>();
+		
+		//등수별 번호 저장
+		List<Integer> third = new ArrayList<>();
+		List<Integer> second = new ArrayList<>();
+		List<Integer> first = new ArrayList<>();
+		
+		//3등추첨
 		System.out.println("3등 복권 추첨합니다.");
-		while(lotto.size() < 3) {
-			 third = lotto.add(rand.nextInt(1000) + 1);
-		}System.out.println(third);
+		while(third.size() < 3) {
+			 int num = rand.nextInt(1000) + 1;
+			 if(lotto.add(num)) { //중복 안되면 저장
+				 third.add(num);
+				 System.out.print(num + ",");
+			 } 	
+		}
+		System.out.println();
+		
+		//2등 추첨
 		System.out.println("2등 복권 추첨합니다.");
-		while(lotto.size() < 2) {
-			second = lotto.add(rand.nextInt(1000) + 1);
-		}System.out.println(second);
+		while(second.size() < 3) {
+			 int num = rand.nextInt(1000) + 1;
+			 if(lotto.add(num)) { //중복 안되면 저장
+				 second.add(num);
+				 System.out.print(num + ",");
+			 } 	
+		}
+		System.out.println();
+		
+		//1등 추첨
 		System.out.println("1등 복권 추첨합니다.");
-		while(lotto.size() < 1) {
-			first = lotto.add(rand.nextInt(1000) + 1);
-		}System.out.println(first);
+		while(first.size() < 3) {
+			 int num = rand.nextInt(1000) + 1;
+			 if(lotto.add(num)) { //중복 안되면 저장
+				 first.add(num);
+				 System.out.print(num + ",");
+			 } 	
+		}
+		System.out.println();
+		
+		//최종 결과
 		System.out.println("*** 복권 추첨 결과 ***");
 		System.out.println("1등:" + first);
 		System.out.println("2등:" + second);
 		System.out.println("3등:" + third);
+		//오름차순
+		Collections.sort(first);
+        Collections.sort(second);
+        Collections.sort(third);
 		System.out.println("==========");
-		
-		
+		System.out.println("1등:" + first);
+		System.out.println("2등:" + second);
+		System.out.println("3등:" + third);
 	}
 }
