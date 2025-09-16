@@ -3,7 +3,7 @@ package chap12_test0915;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
+/*
 public class Test03 {
     static Map<String, String> menus = new HashMap<>();
 
@@ -43,4 +43,31 @@ public class Test03 {
             System.out.println("  " + entry.getKey() + " : " + entry.getValue());
         }
     }
+}*/
+public class Test03 {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		Map<String,String> foods = new HashMap<>();
+		foods.put("떡볶이", "오뎅");
+		foods.put("라면", "김치");
+		while(true) {
+			System.out.println("음식명을 입력하세요(종료:종료)");
+			String food = scan.next();
+			if(food.equals("종료")) break;
+			String pairFood = foods.get(food);
+			if(pairFood == null) {
+				System.out.println(food + "의 궁합음식이 등록되어 있지 않습니다.등록하시겠습니까(Y)?");
+				String yn = scan.next();
+				if(yn.equalsIgnoreCase("Y")) {
+					System.out.println(food + "의 궁합음식을 입력하세요");
+					pairFood = scan.next();
+					foods.put(food, pairFood);
+				} else continue;
+			} else {
+				System.out.println(food + "의 궁합음식 : " + pairFood);
+			}
+		}
+		System.out.println("프로그램 종료");
+		System.out.println(foods);
+	}
 }
