@@ -14,16 +14,18 @@ set1:[1, 2, 3, 4, 5, 9, 12, 64]
 set2:[64, 12, 9, 5, 4, 3, 2, 1]
  */
 
+import java.util.Comparator;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
-
+/*
 public class Test02 {
 	public static void main(String[] args) {
 		//오름차순 정렬(기본)
 		Set<Integer> set1 = new TreeSet<>();
 		//내림차순 정렬
-		Set<Integer> set2 = new TreeSet<>((a, b) -> b - a);
+		Set<Integer> set2 = new TreeSet<>((a, b) -> b - a); 
 		//1-99사이의 숫자가 아닌 것
 		Set<Integer> set3 = new TreeSet<>();
 		
@@ -45,5 +47,31 @@ public class Test02 {
 		System.out.println("set1: " + set1); //오름차순
 		System.out.println("set2: " + set2); //내림차순
 		System.out.println(set3 + "은 1-99사이의 숫자가 아닙니다.");
+	}
+}
+*/
+public class Test02 {
+	public static void main(String[] args) {
+	     TreeSet<Integer> set1 = new TreeSet<Integer>(); //기본정렬방식
+		 TreeSet<Integer> set2 = new TreeSet<Integer> //기본정렬방식의역순
+		                            (Comparator.reverseOrder());
+	     Scanner scan = new Scanner(System.in);
+	     System.out.println("1부터 99까지의 숫자를 입력하세요 (종료 : 0)");
+	     while(true) {
+	    	 int num = 0;
+	     	 try {
+	    	    num = scan.nextInt();
+	     	 } catch (InputMismatchException e) {
+	     		 scan.next();
+	     		 continue;
+	     	 }
+	    	 if(num == 0) break;
+	    	 if(num < 1 || num > 99) continue;
+	    	 //1~99사이의 숫자인 경우만 실행
+	    	 set1.add(num);
+	    	 set2.add(num);
+	     }
+	     System.out.println("set1:"+set1);
+	     System.out.println("set2:"+set2);
 	}
 }
