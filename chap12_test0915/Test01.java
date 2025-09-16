@@ -34,6 +34,7 @@ import java.util.List;
 2등:[280, 920]
 3등:[355, 369, 699]
  */
+/*
 public class Test01 {
 	public static void main(String[] args) {
 		Random rand = new Random();
@@ -91,5 +92,92 @@ public class Test01 {
 		System.out.println("1등:" + first);
 		System.out.println("2등:" + second);
 		System.out.println("3등:" + third);
+	}
+}
+*/
+/*
+public class Test01 {
+	public static void main(String[] args) {
+		Set<Integer> set = new LinkedHashSet<>();
+		Random rand = new Random();
+		//System.currentTimeMillis(): 1970년 이후부터 현재까지의 밀리초
+		rand.setSeed(System.currentTimeMillis()); //seed값 설정. => 임의의수가 매번 바꿔질 수 있도록 seed값 설정
+		
+		while (set.size() < 6) {
+			if (set.size() == 0)
+				System.out.println("\n3등 복권 추첨합니다.");
+			else if (set.size() == 3)
+				System.out.println("\n2등 복권 추첨합니다.");
+			else if (set.size() == 5)
+				System.out.println("\n1등 복권 추첨합니다.");
+			int num = rand.nextInt(1000) + 1; //1~1000사이의 임의의수
+			if (set.add(num)) { //true : 중복없이 set객체
+				System.out.print(num + ",");
+			}
+		}
+		//set객체: 1~1000까지의 숫자 중 서로다른 6개의 숫자를 저장
+		System.out.println();
+		System.out.println("*** 복권 추첨 결과 ***");
+		List<Integer> list = new ArrayList<>(set); //List 객체 <= Set 객체
+		for (int i = list.size() - 1; i >= 0; i--) {
+			if (i == list.size() - 1)
+				System.out.println("1등:" + list.get(i));
+			else if (i == list.size() - 2)
+				System.out.print("2등:" + list.get(i) + ",");
+			else if (i < list.size() - 2 && i >= 3)
+				System.out.print(list.get(i) + ",");
+			else if (i == 2)
+				System.out.print("\n3등:" + list.get(i) + ",");
+			else
+				System.out.print(list.get(i) + ",");
+		}
+		System.out.println("\n===========");
+		List<Integer> list2 = list.subList(5, 6); //1등 번호
+		Collections.sort(list2);
+		System.out.println("1등:" + list2);
+		list2 = list.subList(3, 5); //2등 번호
+		Collections.sort(list2);
+		System.out.println("2등:" + list2);
+		list2 = list.subList(0, 3); //3등
+		Collections.sort(list2);
+		System.out.println("3등:" + list2);
+	}
+}
+*/
+public class Test01 {
+	public static void main(String[] args) {
+		List<Integer> list = new ArrayList<>();
+		for(int i=1;i<=1000;i++) {
+			list.add(i); //list 객체: 1~1000까지의 수를 저장 객체
+							//list.size() = 1000
+		}
+		//Collections.shuffle(list): list의 객체 섞어주기
+		Collections.shuffle(list);
+		List<Integer> list3 = new ArrayList<>(list.subList(0, 3));
+		System.out.println("3등 복권 추첨합니다.");
+		for(Integer i : list3)
+			System.out.print(i+",");
+		System.out.println();
+		List<Integer> list2 = new ArrayList<>(list.subList(3, 5));
+		System.out.println("2등 복권 추첨합니다.");
+		for(Integer i : list2)
+			System.out.print(i+",");
+		System.out.println();
+		List<Integer> list1 = new ArrayList<>(list.subList(5, 6));
+		System.out.println("1등 복권 추첨합니다.");
+		for(Integer i : list1)
+			System.out.print(i+",");
+		System.out.println();
+		System.out.println("*** 복권 추첨 결과 ***");
+		System.out.println("1등:"+list1);
+		System.out.println("2등:"+list2);
+		System.out.println("3등:"+list3);
+		System.out.println("==============");
+		Collections.sort(list1);
+		System.out.println("1등:"+list1);
+		Collections.sort(list2);
+		System.out.println("2등:"+list2);
+		Collections.sort(list3);
+		System.out.println("3등:"+list3);
 	}
 }
