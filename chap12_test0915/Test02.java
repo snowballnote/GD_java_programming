@@ -52,6 +52,7 @@ public class Test02 {
 */
 public class Test02 {
 	public static void main(String[] args) {
+		//set: 중복x, 순서정렬
 	     TreeSet<Integer> set1 = new TreeSet<Integer>(); //기본정렬방식
 		 TreeSet<Integer> set2 = new TreeSet<Integer> //기본정렬방식의역순
 		                            (Comparator.reverseOrder());
