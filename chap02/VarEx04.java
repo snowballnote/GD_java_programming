@@ -1,39 +1,37 @@
 package chap02;
-/*
- * 서로다른 자료형의 연산
- * 1. 동일한 자료형끼리의 연산은 자료형 유지
- * 2. 연산의 결과는 큰 자료형임
- * 3. int 보다 작은 자료형(byte, short, char)의 연산의 결과는 int임.
- * 4. String형과 기본자료형은 + 연산이 가능함. 연산의 결과는 String임.
- */
+
 public class VarEx04 {
 
 	public static void main(String[] args) {
-		int i1 = 10;
+		//1. 동일 자료형끼리 연산: 결과 자료형 유지
+		int i1 = 10; 
 		int i2 = 100;
-		int i3 = i1 + i2;
+		int i3 = i1 + i2; //int + int = int
+		System.out.println("i3=" + i3); //110
+		
+		//2. 서로 다른 자료형 연산: 큰 자료형이 결과
 		long l1 = 20;
-		long l2= i1 + l1; //long <= int + long
-		float f1 = 10L + 1.0f;
-		 //<3>
+		long l2 = i1 + l1; //int + long = long
+		System.out.println("l2=" + l2); //30
+		
+		float f1 = 10L + 1.0f; //long + float = float
+		System.out.println("f1=" + f1); //11.0
+		
+		//3. int보다 작은 자료형(byte, short, char)연산 결과는 int
 		byte b1 = 10;
 		byte b2 = 20;
-		byte b3 = (byte)(b1 + b2);
-		// <4>
-		String str1 = "번호" + 1 + 2 + 3; //처음이 문자열이여서 뒤에도 문자로 인식
-		/*
-		 * 1. "번호" + 1 => "번호1"
-		 * 2. "번호1" + 2 => "번호12"
-		 * 3. "번호12" + 3 => "번호123"
-		 */
-		String str2 = 1 + 2 + 3 + "번"; //정수가 먼저 나와 정수들을 계산하다 마지막에 문자여서 뒤에 붙음
-		/*
-		 * 1. 1 + 2 => 3
-		 * 2. 3 + 3 => 6
-		 * 3. 6 + "번" => "6번"
-		 */
-		System.out.println("str1=" + str1 + ", str2=" + str2);
-		System.out.println(5/2); //값은2.5이지만 자바에서는 2 이유: 정수 나누기 정수여서 결과도 정수만 나옴. int/int => int
+		byte b3 = (byte)(b1 + b2); //b1+b2 결과는 int => byte로 변환하려면 명시적 형변환 필요
+		System.out.println("b3=" + b3); //30
+		
+		//4.String + 기본자료형: 문자열 결합, 결과는 String
+		String str1 = "번호" + 1 + 2 + 3; //문자열이 먼저 나오면 뒤도 문자열로 취급
+		String str2 = 1 + 2 + 3 + "번";   // 숫자가 먼저 나오면 계산 후 문자열로 결합
+        System.out.println("str1 = " + str1); // "번호123"
+        System.out.println("str2 = " + str2); // "6번"
+        
+        // 5. 정수끼리 나눗셈: 결과도 정수
+        System.out.println("5/2 = " + (5/2)); // 2, 소수점은 버려짐
+        System.out.println("5/2.0 = " + (5/2.0)); // 2.5, 하나가 실수면 결과는 실수
 	}
 
 }
