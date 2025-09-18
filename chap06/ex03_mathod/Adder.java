@@ -1,57 +1,41 @@
-package ex01_class;
+package ex03_mathod;
+
 /*
- * 구동 클래스 : main 메서드를 포함하고 있는 클래스
+ * 멤버 메서드(Method, 함수, Function)
+ * - 클래스 내부에 정의된 기능 단위
+ * - 객체의 동작이나 연산을 수행
  * 
- * 이 클래스는 Phone 객체를 생성하고 사용하는 예제를 보여줌
+ * [메서드 구성 요소]
+ * [접근제어자] [제어자] 리턴타입 메서드이름(매개변수 목록) { 구현부 }
+ * 
+ * 1. 접근제어자 : public, private 등 (생략 가능)
+ * 2. 제어자 : static, final 등 (생략 가능)
+ * 3. 리턴타입 : 메서드 종료 후 전달되는 값의 자료형
+ *    - void : 리턴값 없음
+ * 4. 메서드 이름 : 식별자, 소문자로 시작, CamelCase 권장
+ * 5. 매개변수 목록 : 호출 시 전달되는 값
+ * 6. return : 메서드 종료 및 값 반환
+ *    - void: 생략 가능
+ *    - 그 외: 반드시 return 값과 자료형 일치 필요
  */
-public class MainEx01 {
+public class Adder {
 
-	public static void main(String[] args) {
-		// Phone p1 : 참조변수 선언. p1 참조변수는 Phone 객체를 참조한다.
-		Phone p1 = new Phone(); // 객체화(=인스턴스화)
-		/*
-		 * new 예약어의 기능
-		 * 1. 힙(Heap) 영역에 메모리 할당
-		 * 2. 멤버필드를 기본값으로 초기화
-		 *    - 숫자형: 0
-		 *    - 문자열(String): null
-		 *    - boolean: false
-		 *    - 참조형: null
-		 * 3. 생성자(Constructor) 호출
-		 */
+	// [1] int형 리턴 메서드
+	int add1(int a, int b) { 
+		// a + b 결과를 int 타입으로 반환
+		return a + b; // int + int → int
+	}
 
-		// p1 객체의 멤버필드에 값 저장
-		p1.color = "검정";
-		p1.power = true;
-		p1.no = "01012345678";
+	// [2] long형 리턴 메서드
+	long add2(int a, int b) { 
+		// int + int 결과는 int지만 long으로 자동 형변환되어 리턴 가능
+		return a + b; 
+	}
 
-		// 현재 p1 객체의 상태 출력
-		System.out.println(p1.color + "," + p1.power + "," + p1.no);
-
-		// power() 메서드 호출 → 전원 상태 변경
-		p1.power();
-		System.out.println(p1.color + "," + p1.power + "," + p1.no);
-
-		// 새로운 Phone 객체 생성
-		Phone p2 = new Phone();
-		p2.color = "파랑";
-		p2.power = true;
-		p2.no = "01087654321";
-
-		// 두 객체 각각 출력 (p1과 p2는 다른 객체)
-		System.out.println(p1.color + "," + p1.power + "," + p1.no);
-		System.out.println(p2.color + "," + p2.power + "," + p2.no);
-
-		// p2에 p1을 대입
-		// → p2가 p1이 참조하는 객체를 같이 참조하게 됨 (같은 객체를 가리킴)
-		p2 = p1;
-
-		System.out.println(p1.color + "," + p1.power + "," + p1.no);
-		System.out.println(p2.color + "," + p2.power + "," + p2.no);
-
-		// p1의 color를 바꾸면 p2도 동일한 객체를 참조하므로 함께 바뀜
-		p1.color = "초록";
-		System.out.println(p1.color + "," + p1.power + "," + p1.no);
-		System.out.println(p2.color + "," + p2.power + "," + p2.no);
+	// [3] void형 메서드
+	void add3(int a, int b) { 
+		// 결과를 화면에 출력하고 리턴값은 없음
+		System.out.println(a + b);
+		return; // void인 경우 return 생략 가능
 	}
 }
