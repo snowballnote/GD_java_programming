@@ -1,7 +1,28 @@
 package chap13_test0917;
 
 import java.io.*;
+public class Test02 {
+	public static void main(String[] args) throws IOException {
+		String filename = null;
+		try {
+		   filename = args[0];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			filename = "noname.txt";
+		}
+		FileWriter fw = new FileWriter(filename);
+		BufferedReader br = new BufferedReader(
+				new InputStreamReader(System.in));
+		System.out.println("문자열 입력");
+		while(true){
+			String msg = br.readLine();
+			if(msg.equals("exit")) break;
+			fw.write(msg+"\n");
+		}
+		fw.close();		
 
+	}
+}
+/*
 public class Test02 {
     public static void main(String[] args) {
         try {
@@ -40,3 +61,4 @@ public class Test02 {
         }
     }
 }
+*/
