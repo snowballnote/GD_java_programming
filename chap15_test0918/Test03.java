@@ -11,7 +11,9 @@ t5 : 801 ~ 1000까지 합
 main 스레드 : 모든 스레드가 종료할때 까지 기다렸다가 
 모든 스레드의 합을 더해서 1 ~ 1000까지의 합 출력하는 프로그램 구현하기 
 */
-
+class SumThread extends Thread{
+	
+}
 public class Test03 {
 	public static void main(String[] args) {
 		SumThread[] arr = new SumThread[5];
