@@ -2,38 +2,39 @@ package chap03;
 /*
  * 단항연산자
  * 	증감연산자 : ++, --
- * 		++ : 정수값을 1 증가
- * 		-- : 정수값을 1 감소
+ * 		++: 정수값을 1 증가
+ * 		--: 정수값을 1 감소
  */
 public class OpEx01 {
 
 	public static void main(String[] args) {
 		int x = 5, y = 5;
-		//후치형
-		x++; //6
-		y--; //4
-		System.out.println("x=" + x + ", y=" + y);
-		//전치형
-		++x; //6 +1 = 7
-		--y; //4 -1 = 3
-		System.out.println("x=" + x + ", y=" + y);
 		
-		x = y = 5;
-		y = ++x; //x = 6, y = 6
-		System.out.println("x=" + x + ", y=" + y);
+		//후치형(Postfix): 먼저 사용하고 나중에 1 증가/감소
+		x++; //x = 6(5->6)
+		y--; //y = 3(5->4)
 		
-		x = y = 5;
-		y = x++; //x = 6, y = 5 x값은 먼저 y에 넣고(y=5) x값이 +1증감. 순서대로 (y=x)먼저 실행 (x++)이 나중에 실행됨
-		System.out.println("x=" + x + ", y=" + y);
+		//전치형(Prefix): 먼저 1증가/감소시키고 사용
+		++x; //x = 7(6->7)
+		--y; //y = 3(4->3)
+		System.out.println("x=" + x + ", y=" + y); //x=7, y=3
 		
-		x = 5; //초기화
-		System.out.println("x=" + x++); //x=5
-		System.out.println("x=" + x); //x=6
-		System.out.println("x=" + ++x); //x=7
+		//전치형 예시
+		x = y = 5; //x=5, y=5
+		y = x++; //y에 먼저 x값(5) 대입 -> y=5
+					//그 후 x 증가 -> x=6
+		System.out.println("x=" + x + ", y=" + y); //x=6, y=5
+		
+		//출력문 안에서의 전치/후치형 차이
+		x = 5;
+		System.out.println("x=" + x++); //5 (출력 후 증가 -> x=6)
+		System.out.println("x=" + x); //6
+		System.out.println("x=" + ++x); //증가 후 출력 -> 7
 		
 		y = 5;
-		System.out.println("y=" + y--); //y=5
-		System.out.println("y=" + --y);	//y=3
+		System.out.println("y=" + y--); //5 (출력 후 감소-> y=4)
+		System.out.println("y=" + y); //4
+		System.out.println("y=" + --y); //감소 후 출력-> 3
 	}
 
 }
