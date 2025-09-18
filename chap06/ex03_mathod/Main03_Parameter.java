@@ -7,7 +7,7 @@ package ex03_mathod;
 class Value{
 	int val;
 }
-public class Main03_Parameter {
+public class MainEx03_Parameter {
 	public static void main(String[] args) {
 		Value v = new Value();
 		v.val = 100;
@@ -24,4 +24,5 @@ public class Main03_Parameter {
 		v.val += 100;
 		System.out.println("change2() val:" + v.val);
 	}
+
 }
