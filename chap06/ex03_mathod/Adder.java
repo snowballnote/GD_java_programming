@@ -1,32 +1,57 @@
-package ex03_mathod;
+package ex01_class;
 /*
- * 멤버 메서드(함수, Function)
+ * 구동 클래스 : main 메서드를 포함하고 있는 클래스
  * 
- * 구성 요소 //[]=>생략가능 
- * [접근제어자(제안자)][제어자] 리턴타입 메서드이름(매개변수목록) => 선언부
- * {	...	return 값; //값은 리턴타입과 맞아야함.	}		=> 구현부. 알고리즘 구현
- * 
- * 리턴타입 : 메서드 종료 후 전달되는 값의 자료형
- * 			void : 전달되는 값이 없음. 리턴값이 없음.
- * 메서드이름 : 식별자. 소문자로시작. 권장사항 Camel방식:의미가 다르면 대문자로 표현. '_''$'사용가능
- * 매개변수목록 : 메서드를 호출할때 전달되는 값의 자료형과 변수명 설정
- * 				전달할 값이 없는 경우 ()로 표현하면됨.
- * return : 메서드 종료
- * 			리턴타입이 void인 경우: 생략가능 => 전달할 값이 없기 때문
- * 			리턴타입이 void가 아닌 경우: 생략 불가능. return 리턴값;
- * 					리턴값은 리턴타입의 자료형이거나, 리턴타입으로 자동형변환이 되어야함.
- * 					ex)long method(); return 1;은 가능, int method(); return 1L;은 불가능.
+ * 이 클래스는 Phone 객체를 생성하고 사용하는 예제를 보여줌
  */
-public class Adder {
-	int add1(int a, int b) { //int가 return타입
-		return a + b; //return옆의 값들도 int가 되어야함.
-	}
-	long add2(int a, int b) { //int는 long으로 자동형변환되서 사용가능.a
-		return a + b;
-	}
-	void add3(int a, int b) {
-		System.out.println(a + b);
-		return; //void인 경우 생략가능.
-	}
+public class MainEx01 {
 
+	public static void main(String[] args) {
+		// Phone p1 : 참조변수 선언. p1 참조변수는 Phone 객체를 참조한다.
+		Phone p1 = new Phone(); // 객체화(=인스턴스화)
+		/*
+		 * new 예약어의 기능
+		 * 1. 힙(Heap) 영역에 메모리 할당
+		 * 2. 멤버필드를 기본값으로 초기화
+		 *    - 숫자형: 0
+		 *    - 문자열(String): null
+		 *    - boolean: false
+		 *    - 참조형: null
+		 * 3. 생성자(Constructor) 호출
+		 */
+
+		// p1 객체의 멤버필드에 값 저장
+		p1.color = "검정";
+		p1.power = true;
+		p1.no = "01012345678";
+
+		// 현재 p1 객체의 상태 출력
+		System.out.println(p1.color + "," + p1.power + "," + p1.no);
+
+		// power() 메서드 호출 → 전원 상태 변경
+		p1.power();
+		System.out.println(p1.color + "," + p1.power + "," + p1.no);
+
+		// 새로운 Phone 객체 생성
+		Phone p2 = new Phone();
+		p2.color = "파랑";
+		p2.power = true;
+		p2.no = "01087654321";
+
+		// 두 객체 각각 출력 (p1과 p2는 다른 객체)
+		System.out.println(p1.color + "," + p1.power + "," + p1.no);
+		System.out.println(p2.color + "," + p2.power + "," + p2.no);
+
+		// p2에 p1을 대입
+		// → p2가 p1이 참조하는 객체를 같이 참조하게 됨 (같은 객체를 가리킴)
+		p2 = p1;
+
+		System.out.println(p1.color + "," + p1.power + "," + p1.no);
+		System.out.println(p2.color + "," + p2.power + "," + p2.no);
+
+		// p1의 color를 바꾸면 p2도 동일한 객체를 참조하므로 함께 바뀜
+		p1.color = "초록";
+		System.out.println(p1.color + "," + p1.power + "," + p1.no);
+		System.out.println(p2.color + "," + p2.power + "," + p2.no);
+	}
 }
