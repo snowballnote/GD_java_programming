@@ -26,3 +26,4 @@ public class MainEx01 {
 		System.out.println(n2.num);
 	}
 }
+
