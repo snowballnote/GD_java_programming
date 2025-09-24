@@ -11,19 +11,9 @@ public class Exam01 {
 		int[] arr = new int[5];
 		//int[] arr = {10, 20, 30, 40, 50};
 		int sum = 0, maxidx = 0, minidx = 0;
+		
 		System.out.println("정수를 5개 입력하세요: ");
-		for(int i : arr) {
-			arr[i] = sc.nextInt();
-			sum += arr[i];
-			if(arr[maxidx] < arr[i]) {
-				maxidx = i;
-			}
-			if(arr[minidx] > arr[i]) {
-				minidx = i;
-			}
-			
-		}
-		/*for(int i = 0; i < arr.length; i++ ) {
+		for(int i = 0; i < arr.length; i++ ) {
 			arr[i] = sc.nextInt();
 			sum += arr[i];
 			if(arr[maxidx] < arr[i]) {
@@ -33,16 +23,12 @@ public class Exam01 {
 				minidx = i;
 			}
 		}
-		*/
-		
-		
 		System.out.println("합계: " + sum);
 		System.out.println("평균: " + (double)sum/arr.length);
 		System.out.println("최대값: " + arr[maxidx]);
 		System.out.println("최소값: " + arr[minidx]);
 		System.out.println("최대값 인덱스: " + maxidx);
 		System.out.println("최소값 인덱스: " + minidx);
-
 	}
 
 }
